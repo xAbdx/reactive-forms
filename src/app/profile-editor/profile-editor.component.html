@@ -1,7 +1,6 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <h3>Please enter the fields below</h3>
-    
-    <label>
+    <!-- <label>
         First Name:
         <input type="text" formControlName="firstName" required>
     </label>
@@ -9,15 +8,15 @@
     <label>
         Last Name:
         <input type="text" formControlName="lastName" required>
-    </label>
-
-
+    </label> -->
     <div class="form">
         <div class="right">
             <label>
                 Name: <br>
-                <input type="text" formControlName="name" required>
+                <input type="text" formControlName="name" required minlength="5" [(ngModel)]="profileForm.name">
             </label>
+            <p *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger"></p>
             <br>
             <label>
                 Email: <br>
@@ -32,19 +31,22 @@
         </div>
 
         <div class="left">
-            <div class="avatar-area"></div>
+            <div class="avatar-area">
+                <img *ngIf="URL" [src]="URL" id="imageViewer">
+            </div>
             <br>
             <label class="file">
                 Avatar: <br>
-                <input type="file" name="" id="" formControlName="avatar" required>
+                <input type="file" id="imageCapturer"
+                    (change)="useImage($event)">
             </label>
             <br><br>
             <label>
                 Mobile Number: <br>
-                <input type="text" formControlName="mobileNumber" required>
-            </label>
+                <input type="number" formControlName="mobileNumber" required maxlength="10" minlength="10">
+            </label><br>
+            <button type="submit" [disabled]="!profileForm.valid">Submit</button>
         </div>
     </div>
-    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
 
 </form>

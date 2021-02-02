@@ -1,4 +1,4 @@
-/* html {
+html {
     padding: 0;
     margin: 0;
 }
@@ -31,6 +31,13 @@
     border: 1px solid black;
 }
 
-input[type="file"] {
+.avatar-area img {
+    height: 160px;
+    width: 160px;
+}
 
-} */
+input[type="file"] {
+/* padding: 10px; */
+background-color: #ccc;
+width: 180px;
+}
